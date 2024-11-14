@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do List App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <h1>To-Do List</h1>
+    <form id="task-form">
+      <input type="text" id="task-title" placeholder="Task Title" required />
+      <textarea id="task-desc" placeholder="Task Description"></textarea>
+      <button type="submit">Add Task</button>
+    </form>
+
+    <div id="task-list"></div>
+  </div>
+  
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+  <!-- Your JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
