@@ -6,11 +6,12 @@ const firebaseConfig = {
   storageBucket: "to-do-list-app-724dc.firebasestorage.app",
   messagingSenderId: "471591139974",
   appId: "1:471591139974:web:e9d1f85a249366aa136f07",
+  measurementId: "G-4SDD0TV1L4"
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore(); // Initialize Firestore
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 // DOM Elements
 const taskForm = document.getElementById("task-form");
