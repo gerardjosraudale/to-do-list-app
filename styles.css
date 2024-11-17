@@ -1,45 +1,102 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  #app {
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  #task-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  #task-list .task-item {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  #task-list .task-item:last-child {
-    border-bottom: none;
-  }
-  
-  button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 3px;
-  }
-  
-  button:hover {
-    background-color: #218838;
-  }
-  
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f9f9f9; /* Add a light background color for better contrast */
+}
+
+#app {
+  width: 100%;
+  max-width: 400px; /* Allow responsiveness for larger screens */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for a modern look */
+  background-color: #fff; /* Ensure the app container has a white background */
+}
+
+h1 {
+  font-size: 1.5rem; /* Adjust heading size */
+  margin-bottom: 20px;
+  text-align: center; /* Center the title */
+  color: #333; /* Darker color for better readability */
+}
+
+#task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#task-form input,
+#task-form textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none; /* Prevent textarea resizing for a consistent layout */
+}
+
+#task-form textarea {
+  height: 80px; /* Set a default height for better usability */
+}
+
+#task-form button {
+  font-size: 1rem; /* Consistent button text size */
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#task-form button:hover {
+  background-color: #218838;
+}
+
+#task-list {
+  margin-top: 20px;
+}
+
+#task-list .task-item {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#task-list .task-item h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+#task-list .task-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+#task-list .task-item:last-child {
+  border-bottom: none;
+}
+
+#task-list .task-item button {
+  margin-top: 10px;
+  padding: 7px;
+  font-size: 0.9rem;
+  background-color: #007bff; /* Distinct button color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#task-list .task-item button:hover {
+  background-color: #0056b3;
+}
