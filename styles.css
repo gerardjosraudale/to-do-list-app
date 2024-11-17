@@ -1,70 +1,45 @@
 body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f9f9f9; /* Light background for better visual appeal */
-}
-
-#app {
-  width: 100%;
-  max-width: 400px; /* Allow responsiveness */
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Enhance shadow for a modern look */
-  background-color: #fff; /* Ensure white background for the app container */
-}
-
-#task-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-#task-form input,
-#task-form textarea {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-#task-form textarea {
-  resize: none;
-  height: 80px; /* Default height for text area */
-}
-
-#task-list {
-  margin-top: 20px; /* Space between form and task list */
-}
-
-#task-list .task-item {
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 10px; /* Space between tasks */
-  border-radius: 5px; /* Rounded corners for tasks */
-}
-
-#task-list .task-item.completed {
-  background-color: #d4edda;
-  text-decoration: line-through;
-  color: #6c757d;
-}
-
-button {
-  font-size: 1rem; /* Consistent button font size */
-  padding: 10px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease; /* Smooth hover transition */
-}
-
-button:hover {
-  background-color: #218838;
-}
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  #app {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #task-list .task-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #task-list .task-item:last-child {
+    border-bottom: none;
+  }
+  
+  button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
