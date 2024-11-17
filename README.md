@@ -11,9 +11,8 @@ Delete tasks when they are no longer needed.
 The program demonstrates integration with a cloud database by performing CRUD (Create, Read, Update, Delete) operations on Firestore. All tasks are stored in the cloud, enabling easy management and retrieval.
 
 # Purpose
-The purpose of this software is to showcase how a web application can integrate with a Cloud Database to perform essential data operations. This project is also designed to explore real-time database updates, security rules, and responsive web design.
+The purpose of this software is to showcase how a web application can integrate with a Cloud Database to perform essential data operations. 
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running, a walkthrough of the code, and a view of the cloud database.}
 
 [Software Demo Video](https://youtu.be/O6LY7P4U6Vk)
 
