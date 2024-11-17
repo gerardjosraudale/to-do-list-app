@@ -121,6 +121,14 @@ async function markAsCompleted(id) {
   }
 }
 
+taskItem.innerHTML = `
+  <h3>${title}</h3>
+  <p>${description}</p>
+  <button onclick="deleteTask('${id}')">Delete</button>
+  <button onclick="markAsCompleted('${id}')">Mark as Completed</button>
+`;
+
+
 
 // Initial load
 loadTasks();
