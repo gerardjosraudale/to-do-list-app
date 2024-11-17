@@ -14,66 +14,88 @@
       <textarea id="task-desc" placeholder="Task Description"></textarea>
       <button type="submit">Add Task</button>
     </form>
+
     <div id="task-list"></div>
   </div>
-
+  
   <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-  <script src="app.js"></script>
+  <script type="module">
+    // Import Firebase functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-  // Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyD7WX910CgZbh4XoLklUjMxGfu6vEUS6NU",
-  authDomain: "to-do-list-app-724dc.firebaseapp.com",
-  projectId: "to-do-list-app-724dc",
-  storageBucket: "to-do-list-app-724dc.firebasestorage.app",
-  messagingSenderId: "471591139974",
-  appId: "1:471591139974:web:e9d1f85a249366aa136f07",
-  measurementId: "G-4SDD0TV1L4"
-};
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyD7WX910CgZbh4XoLklUjMxGfu6vEUS6NU",
+      authDomain: "to-do-list-app-724dc.firebaseapp.com",
+      projectId: "to-do-list-app-724dc",
+      storageBucket: "to-do-list-app-724dc.firebasestorage.app",
+      messagingSenderId: "471591139974",
+      appId: "1:471591139974:web:e9d1f85a249366aa136f07",
+      measurementId: "G-4SDD0TV1L4"
+    };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-// DOM Elements
-const taskForm = document.getElementById("task-form");
-const taskTitle = document.getElementById("task-title");
-const taskDesc = document.getElementById("task-desc");
-const taskList = document.getElementById("task-list");
+    // DOM Elements
+    const taskForm = document.getElementById("task-form");
+    const taskTitle = document.getElementById("task-title");
+    const taskDesc = document.getElementById("task-desc");
+    const taskList = document.getElementById("task-list");
 
-// Default Form Submit Behavior
-async function taskFormDefaultSubmit(e) {
-  e.preventDefault();
-  const title = taskTitle.value.trim();
-  const description = taskDesc.value.trim();
+    // Add Task
+    taskForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const title = taskTitle.value;
+      const description = taskDesc.value;
 
-  if (!title) {
-    alert("Task title cannot be empty.");
-    return;
-  }
-
-  try {
-    await db.collection("tasks").add({
-      title,
-      description,
-      status: "pending",
+      try {
+        await addDoc(collection(db, "tasks"), { title, description, status: "pending" });
+        taskTitle.value = "";
+        taskDesc.value = "";
+        loadTasks();
+      } catch (error) {
+        console.error("Error adding task:", error);
+      }
     });
-    taskTitle.value = "";
-    taskDesc.value = "";
-  } catch (error) {
-    console.error("Error adding task:", error);
-  }
-}
 
-// Attach default submit handler
-taskForm.onsubmit = taskFormDefaultSubmit;
+    // Load Tasks
+    async function loadTasks() {
+      taskList.innerHTML = "";
+      const querySnapshot = await getDocs(collection(db, "tasks"));
+      querySnapshot.forEach((doc) => {
+        const task = doc.data();
+        displayTask(doc.id, task.title, task.description);
+      });
+    }
 
-// Load Tasks in Real-Time
-function loadTasks() {
+    // Display Task
+    function displayTask(id, title, description) {
+      const taskItem = document.createElement("div");
+      taskItem.classList.add("task-item");
+      taskItem.innerHTML = `
+        <h3>${title}</h3>
+        <p>${description}</p>
+        <button onclick="deleteTask('${id}')">Delete</button>
+      `;
+      taskList.appendChild(taskItem);
+    }
+
+    // Delete Task
+    async function deleteTask(id) {
+      try {
+        await deleteDoc(doc(db, "tasks", id));
+        loadTasks();
+      } catch (error) {
+        console.error("Error deleting task:", error);
+      }
+    }
+
+    function loadTasks() {
   db.collection("tasks").onSnapshot((snapshot) => {
-    taskList.innerHTML = ""; // Clear the task list
+    taskList.innerHTML = "";
     snapshot.forEach((doc) => {
       const task = doc.data();
       displayTask(doc.id, task.title, task.description, task.status);
@@ -81,48 +103,9 @@ function loadTasks() {
   });
 }
 
-// Display Task
-function displayTask(id, title, description, status) {
-  const taskItem = document.createElement("div");
-  taskItem.classList.add("task-item");
-  if (status === "completed") {
-    taskItem.classList.add("completed");
-  }
-  taskItem.innerHTML = `
-    <h3>${title}</h3>
-    <p>${description}</p>
-    <button onclick="deleteTask('${id}')">Delete</button>
-    ${
-      status === "pending"
-        ? `<button onclick="markAsCompleted('${id}')">Mark as Completed</button>`
-        : ""
-    }
-  `;
-  taskList.appendChild(taskItem);
-}
 
-// Mark Task as Completed
-async function markAsCompleted(id) {
-  try {
-    await db.collection("tasks").doc(id).update({
-      status: "completed",
-    });
-  } catch (error) {
-    console.error("Error marking task as completed:", error);
-  }
-}
-
-// Delete Task
-async function deleteTask(id) {
-  try {
-    await db.collection("tasks").doc(id).delete();
-  } catch (error) {
-    console.error("Error deleting task:", error);
-  }
-}
-
-// Initial load
-loadTasks();
-
+    // Initial load
+    loadTasks();
+  </script>
 </body>
 </html>
