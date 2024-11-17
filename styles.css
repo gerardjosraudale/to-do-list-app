@@ -5,24 +5,24 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
-  background-color: #f9f9f9; /* Add a light background color for better contrast */
+  background-color: #f9f9f9;
 }
 
 #app {
   width: 100%;
-  max-width: 400px; /* Allow responsiveness for larger screens */
+  max-width: 400px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for a modern look */
-  background-color: #fff; /* Ensure the app container has a white background */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 }
 
 h1 {
-  font-size: 1.5rem; /* Adjust heading size */
+  font-size: 1.5rem;
   margin-bottom: 20px;
-  text-align: center; /* Center the title */
-  color: #333; /* Darker color for better readability */
+  text-align: center;
+  color: #333;
 }
 
 #task-form {
@@ -37,15 +37,15 @@ h1 {
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  resize: none; /* Prevent textarea resizing for a consistent layout */
+  resize: none;
 }
 
 #task-form textarea {
-  height: 80px; /* Set a default height for better usability */
+  height: 80px;
 }
 
 #task-form button {
-  font-size: 1rem; /* Consistent button text size */
+  font-size: 1rem;
   padding: 10px;
   background-color: #28a745;
   color: white;
@@ -90,7 +90,7 @@ h1 {
   margin-top: 10px;
   padding: 7px;
   font-size: 0.9rem;
-  background-color: #007bff; /* Distinct button color */
+  background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
@@ -99,4 +99,10 @@ h1 {
 
 #task-list .task-item button:hover {
   background-color: #0056b3;
+}
+
+.task-item.completed {
+  background-color: #d4edda;
+  text-decoration: line-through;
+  color: #6c757d;
 }

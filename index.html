@@ -14,87 +14,12 @@
       <textarea id="task-desc" placeholder="Task Description"></textarea>
       <button type="submit">Add Task</button>
     </form>
-
     <div id="task-list"></div>
   </div>
-  
+
   <!-- Firebase SDK -->
-  <script type="module">
-    // Import Firebase functions
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-    // Your Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyD7WX910CgZbh4XoLklUjMxGfu6vEUS6NU",
-      authDomain: "to-do-list-app-724dc.firebaseapp.com",
-      projectId: "to-do-list-app-724dc",
-      storageBucket: "to-do-list-app-724dc.firebasestorage.app",
-      messagingSenderId: "471591139974",
-      appId: "1:471591139974:web:e9d1f85a249366aa136f07",
-      measurementId: "G-4SDD0TV1L4"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // DOM Elements
-    const taskForm = document.getElementById("task-form");
-    const taskTitle = document.getElementById("task-title");
-    const taskDesc = document.getElementById("task-desc");
-    const taskList = document.getElementById("task-list");
-
-    // Add Task
-    taskForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const title = taskTitle.value;
-      const description = taskDesc.value;
-
-      try {
-        await addDoc(collection(db, "tasks"), { title, description, status: "pending" });
-        taskTitle.value = "";
-        taskDesc.value = "";
-        loadTasks();
-      } catch (error) {
-        console.error("Error adding task:", error);
-      }
-    });
-
-    // Load Tasks
-    async function loadTasks() {
-      taskList.innerHTML = "";
-      const querySnapshot = await getDocs(collection(db, "tasks"));
-      querySnapshot.forEach((doc) => {
-        const task = doc.data();
-        displayTask(doc.id, task.title, task.description);
-      });
-    }
-
-    // Display Task
-    function displayTask(id, title, description) {
-      const taskItem = document.createElement("div");
-      taskItem.classList.add("task-item");
-      taskItem.innerHTML = `
-        <h3>${title}</h3>
-        <p>${description}</p>
-        <button onclick="deleteTask('${id}')">Delete</button>
-      `;
-      taskList.appendChild(taskItem);
-    }
-
-    // Delete Task
-    async function deleteTask(id) {
-      try {
-        await deleteDoc(doc(db, "tasks", id));
-        loadTasks();
-      } catch (error) {
-        console.error("Error deleting task:", error);
-      }
-    }
-
-    // Initial load
-    loadTasks();
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
