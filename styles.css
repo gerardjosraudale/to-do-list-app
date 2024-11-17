@@ -43,3 +43,9 @@ body {
     background-color: #218838;
   }
   
+  .task-item.completed {
+    background-color: #d4edda;
+    text-decoration: line-through;
+    color: #6c757d;
+  }
+  
