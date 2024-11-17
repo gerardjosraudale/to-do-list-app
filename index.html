@@ -86,12 +86,12 @@
     // Delete Task
     async function deleteTask(id) {
       try {
-        await deleteDoc(doc(db, "tasks", id));
+        await db.collection("tasks").doc(id).delete();
         loadTasks();
       } catch (error) {
         console.error("Error deleting task:", error);
       }
-    }
+}
 
     // Initial load
     loadTasks();
