@@ -112,23 +112,5 @@ async function markAsCompleted(id) {
   }
 }
 
-async function markAsCompleted(id) {
-  try {
-    await db.collection("tasks").doc(id).update({ status: "completed" });
-    loadTasks();
-  } catch (error) {
-    console.error("Error marking task as completed:", error);
-  }
-}
-
-taskItem.innerHTML = `
-  <h3>${title}</h3>
-  <p>${description}</p>
-  <button onclick="deleteTask('${id}')">Delete</button>
-  <button onclick="markAsCompleted('${id}')">Mark as Completed</button>
-`;
-
-
-
 // Initial load
 loadTasks();
