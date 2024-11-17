@@ -112,5 +112,15 @@ async function markAsCompleted(id) {
   }
 }
 
+async function markAsCompleted(id) {
+  try {
+    await db.collection("tasks").doc(id).update({ status: "completed" });
+    loadTasks();
+  } catch (error) {
+    console.error("Error marking task as completed:", error);
+  }
+}
+
+
 // Initial load
 loadTasks();
